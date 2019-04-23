@@ -1,18 +1,17 @@
+import os
+secret_token = os.getenv("TOKEN")
 import requests
-long_url = 'https://api-ssl.bitly.com/v4/bitlinks'
-headers = {"Authorization": 
-  "Bearer 57f88b644897ad8423fbc1bd78a41c5f4e270d6e"}
+headers = {"Authorization": secret_token}
 new_url = input('Write your url ')
-title = {'long_url' : new_url}
-web_site = requests.post(long_url, json=title, headers=headers)
-new_ws = web_site.json()
-print(web_site.json())
-#print(new_ws)
-#if web_site.status_code == 400:
-  #print('Неверная ссылка')
-#else:
-try1 = new_ws.get('id')
-urnw = ('https://api-ssl.bitly.com/v4/bitlinks/{}/clicks/summary').format(try1)
+urnw = ('https://api-ssl.bitly.com/v4/bitlinks/{}/clicks/summary').format(new_url)
 payload = {'unit' : 'day', 'units' : '-1'}
 total_clicks = requests.get(urnw, params=payload, headers=headers)
-print(total_clicks.text)
+if total_clicks.status_code < 210:
+  print(total_clicks.text)
+else:
+  long_url = 'https://api-ssl.bitly.com/v4/bitlinks'
+  title = {'long_url' : new_url}
+  web_site = requests.post(long_url, json=title, headers=headers)
+  new_ws = web_site.json()
+  print(web_site.json())
+
