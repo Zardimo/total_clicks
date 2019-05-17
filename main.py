@@ -20,9 +20,9 @@ def counting_clicks(new_url,headers):
 	
 	
 def parser_url():
-	parser = argparse.ArgumentParser()
-	parser.add_argument('-url', required=True)
-	return parser
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-url', required=True)
+    return parser
 
 
 def reduction_url(new_url,headers):
