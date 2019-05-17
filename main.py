@@ -48,4 +48,4 @@ if __name__ == '__main__':
             print('Invalid URL, try again')
     else:
         print('Количество переходов по ссылке битли: ' + 
-	         str((counting_clicks(new_url,headers))['total_clicks']))
+            str((counting_clicks(new_url,headers))['total_clicks']))
